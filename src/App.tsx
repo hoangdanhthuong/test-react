@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+} from "chart.js";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import ScrollToTopButton from "./components/Buttons/ScrollToTop";
+import ColumnPage from "./pages/Column";
+import MyPage from "./pages/MyPage";
+import MyRecordPage from "./pages/MyRecord";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MyPage />,
+  },
+  {
+    path: "/column",
+    element: <ColumnPage />,
+  },
+  {
+    path: "/my-record",
+    element: <MyRecordPage />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouterProvider router={router} />
+      <ScrollToTopButton />
+    </>
   );
 }
 
